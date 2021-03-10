@@ -1,0 +1,30 @@
+.el-timeline-item__timestamp {
+  margin-top: 15px !important;
+}
+
+.member-note-form-modal-dialog .el-dialog {
+  width: 400px !important; 
+}
+
+.member-note-form-modal-dialog .el-form-item__label {
+  width: unset !important;
+}
+
+.member-note-form-modal-dialog .el-form-item__content {
+  width: 100% !important;
+  margin-left: 0px !important;
+}
+
+.member-note-form-modal-dialog .el-col {
+  width: 100% !important;
+}
+
+.member-note-form-modal-dialog .el-form-item__content {
+  margin-left: 0px !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .member-note-form-modal-dialog .el-dialog {
+    width: 90% !important; 
+  }
+}

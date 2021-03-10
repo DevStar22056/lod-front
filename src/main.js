@@ -1,0 +1,42 @@
+import '@/shared/plugins/element';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import Router from 'vue-router';
+import {
+  setupComponentsFiltersDirectivesAndMixins,
+  storeAsync,
+  routerAsync,
+} from '@/app-module';
+import app from '@/app.vue';
+import { SettingsService } from '@/modules/settings/settings-service';
+import ProgressBar from '@/shared/progress-bar/progress-bar';
+import { i18n } from '@/i18n';
+import PortalVue from 'portal-vue';
+import {
+  Timeline,
+  TimelineItem,
+} from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+(async function() {
+  document.title = i18n('app.title');
+  ProgressBar.start();
+  await SettingsService.fetchAndApply();
+  
+  Vue.use(Timeline);
+  Vue.use(TimelineItem);
+
+  Vue.use(Router);
+  Vue.use(PortalVue);
+  Vue.config.productionTip =
+    process.env.NODE_ENV === 'production';
+  Vue.use(Vuex);
+  setupComponentsFiltersDirectivesAndMixins();
+
+  // eslint-disable-next-line
+  new Vue({
+    store: storeAsync(),
+    router: routerAsync(),
+    render: (h) => h(app),
+  }).$mount('#app');
+})();
